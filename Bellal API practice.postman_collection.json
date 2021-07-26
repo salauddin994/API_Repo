@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "cc1ee73a-4948-428e-9c82-9aa08b2e7446",
+		"name": "Bellal API practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup Post Call",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responsebody =pm.response.json();\r",
+							"pm.environment.set(\"ID\",pm.variables.replaceIn(responsebody.id));\r",
+							"\r",
+							"pm.test(\"asserting with success message and status code\",function(){\r",
+							"pm.response.to.have.status(201);\r",
+							"pm.expect(responsebody.success).to.eql(true);\r",
+							"pm.expect(responsebody.message).to.eql(\"Registration Success\");\r",
+							"\r",
+							"\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"bellal\",\r\n    \"lastName\" : \"hossain\",\r\n    \"email\"     : \"bellalhossain920@gmail.com\",\r\n    \"password\"  : \"123456\",\r\n    \"confirmPassword\"  : \"123456\",\r\n    \"dob\"       : {\r\n        \"year\"      : 2013,\r\n        \"month\"     : 12,\r\n        \"day\"       : 31\r\n    },\r\n    \"gender\"    : \"female\",\r\n    \"agree\"     : true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/signup",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Call",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "logIn postCall",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}api/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update student info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Jhon\",\r\n    \"lastName\" : \"Doe\",\r\n    \"email\"     : \"jhon.doe20@gmail.com\",\r\n    \"dob\"       : {\r\n        \"year\"      : 2013,\r\n        \"month\"     : 12,\r\n        \"day\"       : 31\r\n    },\r\n    \"gender\"    : \"male\",\r\n    \"agree\"     : true\r\n}"
+				},
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
